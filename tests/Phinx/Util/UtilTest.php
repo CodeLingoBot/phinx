@@ -7,10 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class UtilTest extends TestCase
 {
-    private function getCorrectedPath($path)
-    {
-        return str_replace('/', DIRECTORY_SEPARATOR, $path);
-    }
+    
 
     public function testGetExistingMigrationClassNames()
     {

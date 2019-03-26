@@ -89,10 +89,7 @@ class AdapterFactoryTest extends TestCase
         $this->factory->registerWrapper('test', $wrapper);
     }
 
-    private function getAdapterMock()
-    {
-        return $this->getMockBuilder('Phinx\Db\Adapter\AdapterInterface')->getMock();
-    }
+    
 
     public function testGetWrapper()
     {

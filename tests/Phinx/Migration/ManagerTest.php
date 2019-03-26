@@ -84,10 +84,7 @@ class ManagerTest extends TestCase
         $this->manager = null;
     }
 
-    private function getCorrectedPath($path)
-    {
-        return str_replace('/', DIRECTORY_SEPARATOR, $path);
-    }
+    
 
     /**
      * Returns a sample configuration array for use with the unit tests.

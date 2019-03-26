@@ -1349,31 +1349,14 @@ class PostgresAdapter extends PdoAdapter implements AdapterInterface
      * @param string $tableName Table name
      * @return array
      */
-    private function getSchemaName($tableName)
-    {
-        $schema = $this->getGlobalSchemaName();
-        $table = $tableName;
-        if (false !== strpos($tableName, '.')) {
-            list($schema, $table) = explode('.', $tableName);
-        }
-
-        return [
-            'schema' => $schema,
-            'table' => $table,
-        ];
-    }
+    
 
     /**
      * Gets the schema name.
      *
      * @return string
      */
-    private function getGlobalSchemaName()
-    {
-        $options = $this->getOptions();
-
-        return empty($options['schema']) ? 'public' : $options['schema'];
-    }
+    
 
     /**
      * {@inheritdoc}

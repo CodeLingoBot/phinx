@@ -261,20 +261,7 @@ class Manager
      * @param array $version        The missing version to print (in the format returned by Environment.getVersionLog).
      * @param int   $maxNameLength  The maximum migration name length.
      */
-    private function printMissingVersion($version, $maxNameLength)
-    {
-        $this->getOutput()->writeln(sprintf(
-            '     <error>up</error>  %14.0f  %19s  %19s  <comment>%s</comment>  <error>** MISSING **</error>',
-            $version['version'],
-            $version['start_time'],
-            $version['end_time'],
-            str_pad($version['migration_name'], $maxNameLength, ' ')
-        ));
-
-        if ($version && $version['breakpoint']) {
-            $this->getOutput()->writeln('         <error>BREAKPOINT SET</error>');
-        }
-    }
+    
 
     /**
      * Migrate to the version of the database on a given date.
@@ -821,22 +808,7 @@ class Manager
      *
      * @return AbstractSeed[]
      */
-    private function getSeedDependenciesInstances(AbstractSeed $seed)
-    {
-        $dependenciesInstances = [];
-        $dependencies = $seed->getDependencies();
-        if (!empty($dependencies)) {
-            foreach ($dependencies as $dependency) {
-                foreach ($this->seeds as $seed) {
-                    if (get_class($seed) === $dependency) {
-                        $dependenciesInstances[get_class($seed)] = $seed;
-                    }
-                }
-            }
-        }
-
-        return $dependenciesInstances;
-    }
+    
 
     /**
      * Order seeds by dependencies
@@ -845,22 +817,7 @@ class Manager
      *
      * @return AbstractSeed[]
      */
-    private function orderSeedsByDependencies(array $seeds)
-    {
-        $orderedSeeds = [];
-        foreach ($seeds as $seed) {
-            $key = get_class($seed);
-            $dependencies = $this->getSeedDependenciesInstances($seed);
-            if (!empty($dependencies)) {
-                $orderedSeeds[$key] = $seed;
-                $orderedSeeds = array_merge($this->orderSeedsByDependencies($dependencies), $orderedSeeds);
-            } else {
-                $orderedSeeds[$key] = $seed;
-            }
-        }
-
-        return $orderedSeeds;
-    }
+    
 
     /**
      * Gets an array of database seeders.
